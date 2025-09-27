@@ -16,7 +16,7 @@ export default {
 		// copy to email
 		message.forward(env.FORWARD_EMAIL_TO);
 
-		const webhookClient = new WebhookClient({ url: env.DISCORD_WEBHOOK_URL },{
+		const webhookClient = new WebhookClient({ url: env.DISCORD_WEBHOOK_URL }, {
 			allowedMentions: { parse: [] }
 		});
 
@@ -33,18 +33,7 @@ export default {
 			.setTimestamp(email.date ? new Date(email.date) : null)
 			.setAuthor({
 				name: addressToString(email.from),
-
-				//url: email.from.address ? `mailto:${email.from.address}` : undefined,
-			})/* 
-		if (email.replyTo) {
-			emailEmbed.addFields({ name: 'Reply-To', value: email.replyTo?.map(addressToString).join(",") || '(返信先なし)', inline: true });
-		}
-		if (email.cc) {
-			emailEmbed.addFields({ name: 'Cc', value: email.cc?.map(addressToString).join(",") || '(CCなし)', inline: true });
-		}
-		if (email.bcc) {
-			emailEmbed.addFields({ name: 'Bcc', value: email.bcc?.map(addressToString).join(",") || '(BCCなし)', inline: true });
-		} */
+			})
 
 		if (
 			email.text
@@ -53,7 +42,8 @@ export default {
 				name: '本文',
 				value: (email.text.length > 1000 ? email.text.slice(0, 1000) + '...' : email.text),
 			})
-		}else if (email.html) {
+		}
+		if (email.html) {
 			const turndownService = new TurndownService({
 				headingStyle: 'atx',
 			})
@@ -64,7 +54,7 @@ export default {
 		await webhookClient.send({
 			embeds: [emailEmbed],
 			username: "Cloudflare Workers",
-			
+
 			content: content,
 		});
 

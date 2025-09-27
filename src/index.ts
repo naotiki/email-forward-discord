@@ -14,7 +14,7 @@ export default {
 	async email(message, env, ctx) {
 
 		// copy to email
-		message.forward(env.FORWARD_EMAIL_TO);
+		await message.forward(env.FORWARD_EMAIL_TO);
 
 		const webhookClient = new WebhookClient({ url: env.DISCORD_WEBHOOK_URL }, {
 			allowedMentions: { parse: [] }

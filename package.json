@@ -1,0 +1,26 @@
+{
+	"name": "email-forward-discord",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"deploy": "wrangler deploy",
+		"dev": "wrangler dev",
+		"start": "wrangler dev",
+		"test": "vitest",
+		"cf-typegen": "wrangler types"
+	},
+	"devDependencies": {
+		"@cloudflare/vitest-pool-workers": "^0.8.19",
+		"@types/node": "^24.5.2",
+		"@types/turndown": "^5.0.5",
+		"typescript": "^5.5.2",
+		"vitest": "~3.2.0",
+		"wrangler": "^4.40.2"
+	},
+	"dependencies": {
+		"@mixmark-io/domino": "^2.2.0",
+		"discord.js": "^14.22.1",
+		"postal-mime": "^2.4.4",
+		"turndown": "^7.2.1"
+	}
+}
